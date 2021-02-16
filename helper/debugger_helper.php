@@ -2,7 +2,7 @@
 
 function prx($arg){
 
-	echo '<pre style="background-color:yellow;font-size:1.5rem;color:red;font-weight:bold;white-space: pre-wrap;width:100%;">';
+	echo '<pre style="background-color:yellow;font-size:1.5rem;color:red;font-weight:bold">';
 	if(is_array($arg)){
 
 		print_r($arg);
@@ -22,7 +22,7 @@ function prx($arg){
 
 function pr($arg){
 
-	echo '<pre style="background-color:yellow;font-size:1.5rem;color:red;font-weight:bold;white-space: pre-wrap;width:100%;">';
+	echo '<pre style="background-color:yellow;font-size:1.5rem;color:red;font-weight:bold">';
 	if(is_array($arg)){
 
 		print_r($arg);

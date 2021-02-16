@@ -1,7 +1,6 @@
 <?php
 
 function json_bind($data,$responsecode=200,$comment='',$status='',$total_rows=1,$page_url='',$extra=[]){
-    global $env_n;
     http_response_code($responsecode);
     header('Content-type: application/json');
 
@@ -17,7 +16,6 @@ function json_bind($data,$responsecode=200,$comment='',$status='',$total_rows=1,
         'response_data'=>$json_data,
         'comments'=>$comment,
         'status'=> $status,
-        'env'=>$env_n,
     ];
 
     foreach ($extra as $key => $value) {
@@ -33,11 +31,10 @@ function json_bind($data,$responsecode=200,$comment='',$status='',$total_rows=1,
 function getPaging($total_rows, $records_per_page, $page_url){
         // paging array
         $page = paginate['page'];
-        $pagekeyname = paginate['keyname'];
         $paging_arr=array();
   
         // button for first page
-        $paging_arr["first"] = $page>1 ? "{$page_url}{$pagekeyname}=1" : "";
+        $paging_arr["first"] = $page>1 ? "{$page_url}page=1" : "";
   
         // count all products in the database to calculate total pages
         $total_pages = ceil($total_rows / $records_per_page);
@@ -54,21 +51,21 @@ function getPaging($total_rows, $records_per_page, $page_url){
           
         for($x=$initial_num; $x<$condition_limit_num; $x++){
             // be sure '$x is greater than 0' AND 'less than or equal to the $total_pages'
-        if(($x > 0) && ($x <= $total_pages)){
-            $paging_arr['pages'][$page_count]["page"]=$x;
-            $paging_arr['pages'][$page_count]["url"]="{$page_url}{$pagekeyname}={$x}";
-            $paging_arr['pages'][$page_count]["current_page"] = $x==$page ? "yes" : "no";
-
-            $page_count++;
+            if(($x > 0) && ($x <= $total_pages)){
+                $paging_arr['pages'][$page_count]["page"]=$x;
+                $paging_arr['pages'][$page_count]["url"]="{$page_url}page={$x}";
+                $paging_arr['pages'][$page_count]["current_page"] = $x==$page ? "yes" : "no";
+  
+                $page_count++;
+            }
         }
-    }
   
         // button for last page
-        $paging_arr["last"] = $page<$total_pages ? "{$page_url}{$pagekeyname}={$total_pages}" : "";
+        $paging_arr["last"] = $page<$total_pages ? "{$page_url}page={$total_pages}" : "";
   
         // json format
         return $paging_arr;
-}
+    }
 
 function seek_url($keyname,...$arguments){
     
@@ -79,7 +76,7 @@ function seek_url($keyname,...$arguments){
         }    
     }
     
-return paginate['home_url'].page_routes[$keyname].$values."/?";
+    return paginate['home_url'].page_routes[$keyname].$values."/?";
 
 }
 

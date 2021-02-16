@@ -1,14 +1,12 @@
 <?php
 define('autoloading',TRUE,1);
-
-define('BASE_URL','https://rush.aaratechnologies.in/web2/web/',1);
-#define('BASE_URL','http://localhost/easybug/web/',1);
+define('BASE_URL','https://rush.aaratechnologies.in/web/',1);
 
 define('API_DIR','api');
 
 $autoload['define']=array('lang','error','http_status');
 
-$autoload['config']=array('php_ini','api_routes','dbenv','database','define','auth','pagination','page_routes','tables/supply/table_root','tables/services/table_root','tables/taxi/table_root');
+$autoload['config']=array('php_ini','database','api_routes','define','auth','pagination','page_routes','globals','make_global');
 
 $autoload['library'] =array('query-builder.class','model-loader.class');
 
@@ -25,13 +23,13 @@ $db['prefix'] = 'tbl_';
 $modular['admin']='admin';
 $modular['ajax']='ajax';
 
+
 #Add the Code Snippet
 #$autoload['snippet']=array('code');
 
 ##############################| To Add Any New Extensions |###########################
 
-array_push($autoload['config'],'globals');
-array_push($autoload['config'],'make_global');
+
 
 
 

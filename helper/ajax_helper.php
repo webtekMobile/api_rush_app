@@ -18,5 +18,12 @@ function parsejson(){
 }
 
 
+//function put request
+function put_params(){
+	$jsondata = file_get_contents("php://input",true);
+	parse_str($jsondata,$_PUT);
+	return $_PUT;
+}
+
 
 ?>

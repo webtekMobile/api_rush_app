@@ -6,6 +6,3 @@ $define[__FILE__][__LINE__] = 'gst';
 $define[__FILE__][__LINE__] = 'tax';
 $define[__FILE__][__LINE__] = 'local';
 
-
-
-
